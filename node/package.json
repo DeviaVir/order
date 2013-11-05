@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "app.js"
+  },
+  "name": "order",
+  "homepage": "order.sillevis.net",
+  "dependencies": {
+    "mysql": ">=2.0.0-alpha4",
+    "primus": ">=1.4.2",
+    "request": ">=2.16.6",
+    "events": ">=0.5.0",
+    "util": ">=0.4.9",
+    "socket.io": "~0.9.16"
+  }
+}

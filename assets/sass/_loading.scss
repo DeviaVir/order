@@ -1,0 +1,91 @@
+$particles: 62; // has to match nodes in dom
+$particleSize: 8px;
+$radius: 80;
+$lapDuration: 3s;
+
+.loading-container {
+  overflow: hidden;
+  
+  height: auto;
+  min-height: 500px;
+  position: absolute;
+  top: 148px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loading-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  
+  @include perspective(500px);
+
+  i {
+    display: block;
+    position: absolute;
+    width: $particleSize;
+    height: $particleSize;
+    border-radius: $particleSize;
+    opacity: 0;
+    background: rgba(255,255,255,0.5);
+    box-shadow: 0px 0px 10px rgba(255,255,255,1);
+    
+    @include animation( spin infinite $lapDuration ease-in-out );
+
+    @for $i from 1 through $particles {
+      &:nth-child(#{$i}) {
+        $angle: ( $i / $particles ) * 720;
+        
+        @include transform(
+          rotate( #{$angle}deg )
+          translate3d( #{$radius}px, 0, 0 )
+        );
+
+        @include animation-delay( $i * ($lapDuration / $particles) );
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate3d(-$particleSize/2, -$particleSize/2, 570px);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 0.6;
+    -webkit-transform: translate3d(-$particleSize/2, -$particleSize/2, 570px);
+  }
+}
+
+@-moz-keyframes spin {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 0.6;
+    -moz-transform: translate3d(-$particleSize/2, -$particleSize/2, 570px);
+  }
+}
+
+@-ms-keyframes spin {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 0.6;
+    -ms-transform: translate3d(-$particleSize/2, -$particleSize/2, 570px);
+  }
+}
